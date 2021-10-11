@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html style="background: #CDF1E3;">
+<head>
+	<meta charset="utf-8">
+	<title>Email Templates</title>
+	<link rel='icon' href="{{url_for('static',filename = 'titleicon.png')}}"/>
+	<header>
+		<h1 class="heading" style="margin-left: 0;margin-top: 0;margin-right: 0;text-align: center;	background:#54625E; 
+								   padding-top: 5px;padding-bottom: 15px;color: #CDF1E3;font-family: 'Comic Sans MS';
+								   font-size: 60px;">
+			Email Template Search Engine
+		</h1>
+	</header>
+</head>
+<body>
+	<div>
+		<br><br>
+		<form action="/search_results" method="POST" style="text-align: center" >
+  			<label for="search"><h1 class="search-label" style="text-align: center;font-family: 'Comic Sans MS';color:#54625E;">
+  									Search Email Templates 
+  									<br>
+  								</h1>
+  			</label>
+			<input class="keywords" name="keywords" type="text" id='search' size="50" 
+				   style="border: none;cursor: text;border-radius: 50px;padding-left: 20px;padding-top: 5px;padding-bottom:5px;
+				   		  outline: none;background: #EEFAF6;font-family: 'Comic Sans MS';color: #54625E;" autocomplete="off">
+  			<input class="search" type="submit" value="Search" style="width: 8%;padding-top: 2px;padding-bottom:2px;background:#54625E;
+  																	  color: #CDF1E3;font-family: 'Comic Sans MS';border-radius: 50px;
+  																	  cursor: pointer;">
+		</form>
+		<br>
+	</div>
+	<div class="search-results">
+		<h2 class="search-results" style="text-align: center;font-family: 'Comic Sans MS';color:#54625E;">
+			Search Results:
+		</h2>
+		<form action="/search_results/print" method="POST" style="text-align: center">
+			<label class="choose-title" for="title" style="text-align: center;font-family: 'Comic Sans MS';color:#54625E;">
+			Choose Template: </label>
+			<select class="title" id="title" name="title" style="border: none;cursor: pointer;border-radius: 30px;padding-left: 5px;
+														   padding-top: 5px;padding-bottom:5px;outline: none;background: #EEFAF6;
+														   font-family: 'Comic Sans MS';color: #54625E;">
+				{% for item in title_list: %}
+				<option value="{{item}}">
+					{{item}}
+				</option>
+				{% endfor %}
+			</select>
+			<input class="search" type="submit" value="Show" style="width:10%;padding-top:2px;padding-bottom:2px;
+																	  background:#54625E;color: #CDF1E3;
+																	  font-family: 'Comic Sans MS';border-radius: 50px;
+  																	  cursor: pointer;">
+		</form>
+		<br><br><br><br>
+	</div>
+
+	<div>
+		<h1 class="search-by-cat" style="text-align: center;font-family: 'Comic Sans MS';color:#54625E;">
+			Search Email Templates by Categories 
+			<br>
+		</h1>
+	</div>
+	<div>
+		<form action="/category" method="POST" style="text-align: center">
+			<label class="choose-cat" for="cat" style="text-align: center;font-family: 'Comic Sans MS';color:#54625E;">
+			Choose a category: </label>
+			<select class="cat" id="cat" name="cat" style="border: none;cursor: pointer;border-radius: 30px;padding-left: 5px;
+														   padding-top: 5px;padding-bottom:5px;outline: none;background: #EEFAF6;
+														   font-family: 'Comic Sans MS';color: #54625E;">
+				{% for item in cat_list: %}
+				<option value="{{item}}">
+					{{item}}
+				</option>
+				{% endfor %}
+			</select>
+			<input class="search" type="submit" value="Apply Filter" style="width:10%;padding-top:2px;padding-bottom:2px;
+																	  background:#54625E;color: #CDF1E3;
+																	  font-family: 'Comic Sans MS';border-radius: 50px;
+  																	  cursor: pointer;">
+		</form>
+		<br><br>
+	</div>
+
+</body>
+</html>
